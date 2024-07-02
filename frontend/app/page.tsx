@@ -113,7 +113,7 @@ const handleChangeTheme = () => {
 return (
   <>
     {notes.map(note => (
-      <Post key='${note.id}' post={{ ...note, onDelete: handleDelete, onUpdateContent: handleUpdateContent }} />
+      <Post key= {`${note.id}`} post={{ ...note, onDelete: handleDelete, onUpdateContent: handleUpdateContent }} />
     ))}
     <div className="pagination">
     <Pagination

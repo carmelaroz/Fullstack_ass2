@@ -1,5 +1,7 @@
 const Note = require('../models/note')
 // const {generateNotes, addNotes}= require('../models/generateNotes')
+const User = require('../models/user')
+const jwt = require('jsonwebtoken')
 
 const getAllNotes = (request, response, next) => {
   const page = parseInt(request.query._page);
@@ -36,18 +38,39 @@ const getTheIthNote = (request, response, next) => {
       }).catch(error => next(error))
   }
 
-const createNote = (request, response, next) => {
+const getTokenFrom = request => {
+  const authorization = request.get('authorization')
+  if (authorization && authorization.startsWith('Bearer ')) {
+    return authorization.replace('Bearer ', '')
+  }
+  return null
+}
+
+const createNote = async(request, response, next) => {
     const body = request.body
     if (body.content === undefined) {
       return response.status(400).json({ error: 'missing content' })
     }
+    const token = getTokenFrom(request);
+    let decodedToken;
+    try {
+      decodedToken = jwt.verify(token, process.env.SECRET);
+    } catch (error) {
+      return response.status(401).json({ error: 'token missing or invalid' });
+    }
+    if (!decodedToken.id) {
+      return response.status(401).json({ error: 'token invalid' })
+    }
+
+    const user = await User.findById(decodedToken.id)
+  
     const note = new Note({
         id: body.id,
         title: body.title,
         author: {
-        name: body.author.name,
-        email: body.author.email,
-        } || null,
+          name: user.name,
+          email: user.email,
+        },
         content: body.content,
     })
     note.save().then(savedNote => {
@@ -70,7 +93,19 @@ const initDb = async(request, response, next) => {
       }
     }
 
-const deleteNote = (request, response, next) => {
+const deleteNote = async(request, response, next) => {
+    const token = getTokenFrom(request);
+    let decodedToken;
+    try {
+      decodedToken = jwt.verify(token, process.env.SECRET);
+    } catch (error) {
+      return response.status(401).json({ error: 'token missing or invalid' });
+    }
+    if (!decodedToken.id) {
+      return response.status(401).json({ error: 'token invalid' })
+    }
+    const user = await User.findById(decodedToken.id)
+
     const index = request.params.id
     Note.findOne({id: index})
     .then(note => {
@@ -85,7 +120,19 @@ const deleteNote = (request, response, next) => {
     }).catch(error => next(error));
   }
 
-const updateNote = (request, response, next) => {
+const updateNote = async(request, response, next) => {
+    const token = getTokenFrom(request);
+    let decodedToken;
+    try {
+      decodedToken = jwt.verify(token, process.env.SECRET);
+    } catch (error) {
+      return response.status(401).json({ error: 'token missing or invalid' });
+    }
+    if (!decodedToken.id) {
+      return response.status(401).json({ error: 'token invalid' })
+    }
+    const user = await User.findById(decodedToken.id)
+
     const index = request.params.id
     const updatedContent = request.body.content;
 

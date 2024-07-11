@@ -81,22 +81,14 @@ body {
     padding: 2rem;
   }
 
-.add-new-note {
-background-color: #ffa135;
-border: none;
-color: white;
-padding: 10px 20px;
-text-align: center;
-text-decoration: none;
-display: inline-block;
-font-size: 16px;
-margin: 4px 2px;
-cursor: pointer;
+button {
+  padding: 10px 20px;
+  margin: 5px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
-
-.add-new-note:hover {
-    background-color: #ffc395;
-  }
 
 .cancel {
 background-color: #f44336;
@@ -111,35 +103,9 @@ margin: 4px 2px;
 cursor: pointer;
 }
 
-.new-note-form {
-margin-top: 20px;
-    display: flex;
-    flex-direction: column; 
-    gap: 8px;
-    color: black;
-}
-  
-  .new-note-form h2,
-  .new-note-form small,
-  .new-note-form p {
-    margin: 0;
-  }
-
-  .new-note-form textarea {
-    color: black;
-  }
-
   .theme-button {
     background-color: #a9a9a9;
-    border: none;
     color: white;
-    padding: 8px 15px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 3px 1px;
-    cursor: pointer;
   }
 
   .theme-button:hover {
@@ -161,3 +127,134 @@ margin-top: 20px;
     background-color: var(--background-color);
     color: var(--text-color);
   }
+
+
+  .create-user-button {
+    background-color: #44b919;
+    color: white;
+  }
+
+  .create-user-button:hover {
+    background-color:aliceblue;
+  }
+
+  .login-button {
+    background-color: #008CBA; /* Blue */
+    color: white;
+  }
+  
+  .login-button:hover {
+    background-color: #007bb5;
+  }
+
+  .logout-button {
+    background-color: #f44336; /* Red */
+    color: white;
+  }
+  
+  .logout-button:hover {
+    background-color: #da190b;
+  }
+
+.input-field, .textarea-field, .button {
+  display: block;
+  width: 100%;
+  margin: 10px 0;
+  padding: 10px;
+  font-size: 16px;
+}
+
+.input-field, .textarea-field {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.textarea-field {
+  resize: vertical;
+  height: 100px;
+}
+
+/* Button styles */
+.button {
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.button:hover {
+  background-color: #0056b3;
+}
+
+/* Specific button styles */
+.save-button {
+  background-color: #28a745; /* Green */
+}
+
+.save-button:hover {
+  background-color: #218838;
+}
+
+.cancel-button {
+  background-color: #dc3545; /* Red */
+}
+
+.cancel-button:hover {
+  background-color: #c82333;
+}
+
+.add-new-note-button {
+  background-color: #17a2b8; /* Light blue */
+}
+
+.add-new-note-button:hover {
+  background-color: #138496;
+}
+
+.add-new-note {
+  margin: 20px 0;
+  display: inline-block;
+}
+
+.new-note-form {
+  background-color: #f8f9fa;
+  padding: 20px;
+  border: 1px solid #dee2e6;
+  border-radius: 5px;
+}
+
+.create-user-button {
+  background-color: #28a745; /* Green */
+}
+
+.create-user-button:hover {
+  background-color: #218838;
+}
+
+.login-button {
+  background-color: #17a2b8; /* Light blue */
+}
+
+.login-button:hover {
+  background-color: #138496;
+}
+
+.logout-button {
+  background-color: #dc3545; /* Red */
+}
+
+.logout-button:hover {
+  background-color: #c82333;
+}
+
+/* Form container styles */
+.user-form {
+  background-color: #f8f9fa;
+  padding: 20px;
+  border: 1px solid #dee2e6;
+  border-radius: 5px;
+  margin-top: 20px;
+  display: inline-block;
+}

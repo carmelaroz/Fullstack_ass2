@@ -11,12 +11,14 @@ export type PostProps = {
     content: string;
     onDelete: (id: number) => void;
     onUpdateContent: (id: number, newContent: string) => void;
+    token: string;
   };
+  
 
   const Post: React.FC<{ post: PostProps }> = ({ post }) => {
     const [editMode, setEditMode] = useState(false);
     const [editedContent, setEditedContent] = useState(post.content);
-    
+
     useEffect(() => {
       if (!editMode) {
         setEditedContent(post.content);
@@ -24,12 +26,20 @@ export type PostProps = {
     }, [post.content, editMode]);
 
     const handleDelete = () => {
-      post.onDelete(post.id);
+      if (post.token) {
+        post.onDelete(post.id);
+    } else {
+        alert("You must be logged in to delete a post.");
+    }
     };
 
     const handleEditToggle = () => {
-      setEditMode(!editMode);
-      setEditedContent(post.content); 
+      if (post.token) {
+        setEditMode(!editMode);
+        setEditedContent(post.content);
+    } else {
+        alert("You must be logged in to edit a post.");
+    }
     };
   
     const handleContentChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -37,9 +47,13 @@ export type PostProps = {
     };
   
     const handleUpdate = async () => {
-      console.log(`Updating post ID ${post.id} with content:`, editedContent);
-      await post.onUpdateContent(post.id, editedContent);
-      setEditMode(false);
+      if (post.token) {
+        console.log(`Updating post ID ${post.id} with content:`, editedContent);
+        await post.onUpdateContent(post.id, editedContent);
+        setEditMode(false);
+    } else {
+        alert("You must be logged in to update a post.");
+    }
     };
 
     return (

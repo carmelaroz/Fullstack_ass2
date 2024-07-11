@@ -35,10 +35,6 @@ require('./models/user')
 app.use('/api/notes', noteRouter)
 app.use('/api/users', userRouter)
 
-app.get('/ping', (req, res) => {
-  res.send('pong');
-});
-
 const PORT = process.env.PORT || 3001
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`)

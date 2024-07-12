@@ -25,7 +25,7 @@ export type PostProps = {
       }
     }, [post.content, editMode]);
 
-    const handleDelete = () => {
+    const handleDelete = async () => {
       if (post.token) {
         post.onDelete(post.id);
     } else {

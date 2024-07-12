@@ -463,3 +463,68 @@
 11/07/2024, 17:18:31 GET /api/notes {}
 11/07/2024, 17:25:21 GET /api/notes {}
 11/07/2024, 17:25:22 GET /api/notes {}
+12/07/2024, 10:16:39 GET /api/notes {}
+12/07/2024, 10:16:40 GET /api/notes {}
+12/07/2024, 10:19:07 POST /api/users/users {"name":"user 4","email":"mail_4@gmail.com","username":"username 4","password":"password4"}
+12/07/2024, 10:19:40 POST /api/users/login {"username":"username 4","password":"password4"}
+12/07/2024, 10:19:42 POST /api/notes {"id":"7","title":"title7","content":"content7"}
+12/07/2024, 10:19:59 PUT /api/notes/7 {"content":"content7 updaate"}
+12/07/2024, 10:20:02 DELETE /api/notes/7 {}
+12/07/2024, 10:20:18 POST /api/notes {"id":"7","title":"title 7 ","content":"content 7"}
+12/07/2024, 10:34:19 GET /api/notes {}
+12/07/2024, 10:34:19 GET /api/notes {}
+12/07/2024, 10:34:30 POST /api/users/login {"username":"username 3","password":"password3"}
+12/07/2024, 10:34:32 DELETE /api/notes/7 {}
+12/07/2024, 10:34:54 DELETE /api/notes/6 {}
+12/07/2024, 10:35:03 DELETE /api/notes/6 {}
+12/07/2024, 10:43:09 GET /api/notes {}
+12/07/2024, 10:43:10 GET /api/notes {}
+12/07/2024, 10:43:24 POST /api/users/login {"username":"username 3","password":"password3"}
+12/07/2024, 10:43:27 DELETE /api/notes/7 {}
+12/07/2024, 10:43:31 DELETE /api/notes/6 {}
+12/07/2024, 10:43:52 POST /api/notes {"id":"6","title":"title6","content":"content6"}
+12/07/2024, 10:44:47 GET /api/notes {}
+12/07/2024, 10:44:48 GET /api/notes {}
+12/07/2024, 10:44:57 POST /api/users/login {"username":"username 3","password":"password3"}
+12/07/2024, 10:45:20 DELETE /api/notes/7 {}
+12/07/2024, 10:46:05 POST /api/users/login {"username":"username 3","password":"password3"}
+12/07/2024, 10:46:13 PUT /api/notes/7 {"content":"content 7"}
+12/07/2024, 10:47:32 GET /api/notes {}
+12/07/2024, 10:47:32 GET /api/notes {}
+12/07/2024, 10:47:39 POST /api/users/login {"username":"username 3","password":"password3"}
+12/07/2024, 10:47:52 PUT /api/notes/7 {"content":"content 7"}
+12/07/2024, 10:48:07 DELETE /api/notes/7 {}
+12/07/2024, 10:48:24 PUT /api/notes/7 {"content":"content 7"}
+12/07/2024, 10:48:52 POST /api/users/login {"username":"username 1","password":"password1"}
+12/07/2024, 10:49:08 DELETE /api/notes/7 {"username":"username 1","password":"password1"}
+12/07/2024, 10:49:28 PUT /api/notes/7 {"content":"abc"}
+12/07/2024, 10:49:56 PUT /api/notes/7 {"content":"content 3 update"}
+12/07/2024, 10:50:21 PUT /api/notes/7 {"content":"content 3 update"}
+12/07/2024, 10:51:02 POST /api/users/login {"username":"username 1","password":"password1"}
+12/07/2024, 10:52:00 PUT /api/notes/3 {"content":"content 3 update"}
+12/07/2024, 10:52:05 GET /api/notes {}
+12/07/2024, 10:52:05 GET /api/notes {}
+12/07/2024, 10:52:18 POST /api/users/login {"username":"username 1","password":"password1"}
+12/07/2024, 10:52:37 POST /api/notes {"id":"8","title":"title8","content":"content8"}
+12/07/2024, 10:52:48 DELETE /api/notes/7 {"content":"content 3 update"}
+12/07/2024, 10:52:52 DELETE /api/notes/8 {"content":"content 3 update"}
+12/07/2024, 10:52:56 GET /api/notes {}
+12/07/2024, 10:52:56 GET /api/notes {}
+12/07/2024, 10:53:54 POST /api/users/login {"username":"username 3","password":"password3"}
+12/07/2024, 11:35:54 DELETE /api/notes/8 {"content":"content 3 update"}
+12/07/2024, 11:37:19 POST /api/users/login {"username":"username 2","password":"password2"}
+12/07/2024, 11:38:23 POST /api/users/login {"username":"username 2","password":"password2"}
+12/07/2024, 11:43:04 GET /api/notes {}
+12/07/2024, 11:43:04 GET /api/notes {}
+12/07/2024, 11:48:37 GET /api/notes {}
+12/07/2024, 11:48:37 GET /api/notes {}
+12/07/2024, 11:48:44 GET /api/notes {}
+12/07/2024, 11:48:44 GET /api/notes {}
+12/07/2024, 11:49:36 GET /api/notes {}
+12/07/2024, 11:49:36 GET /api/notes {}
+12/07/2024, 12:10:59 GET /api/notes {}
+12/07/2024, 12:10:59 GET /api/notes {}
+12/07/2024, 12:12:18 GET /api/notes {}
+12/07/2024, 12:12:18 GET /api/notes {}
+12/07/2024, 12:21:42 GET /api/notes {}
+12/07/2024, 12:21:42 GET /api/notes {}

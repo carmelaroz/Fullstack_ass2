@@ -105,12 +105,14 @@ const deleteNote = async(request, response, next) => {
       return response.status(401).json({ error: 'token invalid' })
     }
     const user = await User.findById(decodedToken.id)
-
     const index = request.params.id
     Note.findOne({id: index})
     .then(note => {
       if (!note) {
         return response.status(404).json({ error: 'cannot find note' })
+      }
+      if(user.name != note.author.name) {
+        return response.status(403).json({ error: 'permission denied' });
       }
       Note.deleteOne({ id: note.id })
         .then(() => {
@@ -131,11 +133,10 @@ const updateNote = async(request, response, next) => {
     if (!decodedToken.id) {
       return response.status(401).json({ error: 'token invalid' })
     }
-    const user = await User.findById(decodedToken.id)
 
+    const user = await User.findById(decodedToken.id)
     const index = request.params.id
     const updatedContent = request.body.content;
-
     if (!updatedContent) {
         return response.status(400).json({ error: 'missing content' });
     }
@@ -143,6 +144,9 @@ const updateNote = async(request, response, next) => {
     .then(note => {
       if (!note) {
         return response.status(404).json({ error: 'cannot find note' });
+      }
+      if(user.name != note.author.name) {
+        return response.status(403).json({ error: 'permission denied' });
       }
       note.content = updatedContent;
       note.save()

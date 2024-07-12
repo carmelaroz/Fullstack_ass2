@@ -128,34 +128,6 @@ cursor: pointer;
     color: var(--text-color);
   }
 
-
-  .create-user-button {
-    background-color: #44b919;
-    color: white;
-  }
-
-  .create-user-button:hover {
-    background-color:aliceblue;
-  }
-
-  .login-button {
-    background-color: #008CBA; /* Blue */
-    color: white;
-  }
-  
-  .login-button:hover {
-    background-color: #007bb5;
-  }
-
-  .logout-button {
-    background-color: #f44336; /* Red */
-    color: white;
-  }
-  
-  .logout-button:hover {
-    background-color: #da190b;
-  }
-
 .input-field, .textarea-field, .button {
   display: block;
   width: 100%;
@@ -174,23 +146,12 @@ cursor: pointer;
   height: 100px;
 }
 
-/* Button styles */
-.button {
-  background-color: #007BFF;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
 .button:hover {
   background-color: #0056b3;
 }
 
-/* Specific button styles */
 .save-button {
-  background-color: #28a745; /* Green */
+  background-color: #28a745; 
 }
 
 .save-button:hover {
@@ -198,7 +159,7 @@ cursor: pointer;
 }
 
 .cancel-button {
-  background-color: #dc3545; /* Red */
+  background-color: #dc3545;
 }
 
 .cancel-button:hover {
@@ -206,15 +167,15 @@ cursor: pointer;
 }
 
 .add-new-note-button {
-  background-color: #17a2b8; /* Light blue */
+  background-color: #b534a8;
+  color: white;
 }
 
 .add-new-note-button:hover {
-  background-color: #138496;
+  background-color: #c65ebea0;
 }
 
 .add-new-note {
-  margin: 20px 0;
   display: inline-block;
 }
 
@@ -227,6 +188,7 @@ cursor: pointer;
 
 .create-user-button {
   background-color: #28a745; /* Green */
+  color: white;
 }
 
 .create-user-button:hover {
@@ -235,6 +197,7 @@ cursor: pointer;
 
 .login-button {
   background-color: #17a2b8; /* Light blue */
+  color: white;
 }
 
 .login-button:hover {
@@ -243,6 +206,7 @@ cursor: pointer;
 
 .logout-button {
   background-color: #dc3545; /* Red */
+  color: white;
 }
 
 .logout-button:hover {
@@ -256,5 +220,7 @@ cursor: pointer;
   border: 1px solid #dee2e6;
   border-radius: 5px;
   margin-top: 20px;
-  display: inline-block;
+  max-width: 300px;
+  margin: 0 auto;
 }
+

@@ -35,7 +35,7 @@ describe('Note app', () => {
   }
 
   test('check create user', async ({ page }) => {
-    await register(page, 'user 111', 'mail_111@gmail.com', 'username 111', 'password111')
+    await register(page, 'user 200', 'mail_200@gmail.com', 'username 200', 'password200')
   })
 
   const login = async (page, username, password)  => {
@@ -55,14 +55,14 @@ describe('Note app', () => {
   }
 
   test('check login', async ({ page }) => {
-    await login(page, 'username 1', 'password1')
+    await login(page, 'username 200', 'password200')
     
   })  
 
   describe('when logged in', () => {
 
     beforeEach(async ({ page }) => {
-      await login(page, 'username 5', 'password5')
+      await login(page, 'username 200', 'password200')
     })
 
     test('check create new note', async ({ page }) => {
@@ -72,9 +72,9 @@ describe('Note app', () => {
           await page.getByRole('button', { name: 'Add new note' }).click();
     
           const textboxes = await page.getByRole('textbox').all();
-          await textboxes[0].fill('13')
-          await textboxes[1].fill('title 13')
-          await textboxes[2].fill('content 13')
+          await textboxes[0].fill('200')
+          await textboxes[1].fill('title 200')
+          await textboxes[2].fill('content 200')
     
           await page.getByRole('button', { name: 'Save' }).click()
         })()

@@ -166,6 +166,7 @@ const handleCreateUserSubmit = async (e: React.FormEvent) => {
     });
   } catch (error) {
     console.error('Error creating user:', error);
+    console.log('resigistration failed');
   }
   console.log('resigister successfully');
 };

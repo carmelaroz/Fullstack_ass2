@@ -81,7 +81,6 @@ const handleUpdateContent = async (index: number, newContent: string) => {
     } catch (error) {
       console.error("Encountered an error while updating content:", error);
     }
-    
   };
   
 const handleAddNewNote = async () => {
@@ -108,6 +107,7 @@ const handleAddNewNote = async () => {
   } catch (error) {
     console.error('Encountered an error while adding a new note:', error);
   }
+  console.log('new note was created'); 
 };
 
 const handleInputChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -140,6 +140,7 @@ const handleChangeTheme = () => {
   } else {
     document.body.classList.remove('dark-theme');
   }
+  console.log('theme has changed');
 };
 
 const handleCreateUserChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -166,6 +167,7 @@ const handleCreateUserSubmit = async (e: React.FormEvent) => {
   } catch (error) {
     console.error('Error creating user:', error);
   }
+  console.log('resigister successfully');
 };
 
 const handleLoginChange = (e: React.ChangeEvent<HTMLInputElement>) => {

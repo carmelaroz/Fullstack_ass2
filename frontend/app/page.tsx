@@ -307,7 +307,7 @@ return (
               />
             </label>
           </div>
-          <button className="submit-button" type="submit" name="create_user_form_create_user">Create User</button>
+          <button className="submit-button" type="submit" name="create_user_form_create_user">register</button>
         </form>
       )}
 
@@ -340,7 +340,7 @@ return (
               />
             </label>
           </div>
-          <button className="submit-button" type="submit" >Login</button>
+          <button className="submit-button" type="submit" >Log in</button>
         </form>
       )}
 

@@ -12,9 +12,8 @@ export type PostProps = {
     onDelete: (id: number) => void;
     onUpdateContent: (id: number, newContent: string) => void;
     token: string;
-    currentUsername: string;
+    currentUserName: string;
   };
-  
 
   const Post: React.FC<{ post: PostProps }> = ({ post }) => {
     const [editMode, setEditMode] = useState(false);
@@ -57,6 +56,8 @@ export type PostProps = {
     }
     };
 
+    
+
     return (
       <div className="note" id={`${post.id}`}>
       <h2>{post.title}</h2>
@@ -74,7 +75,7 @@ export type PostProps = {
         <p>{post.content}</p>
       )}
       <div>
-        {post.currentUsername === post.author?.name && ( <>
+        {post.currentUserName === post.author?.name && ( <>
         {editMode ? (
           <>
             <button name={`text_input_save-${post.id}`} className="save-button" onClick={handleUpdate}>Save</button>

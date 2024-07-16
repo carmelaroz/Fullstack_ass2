@@ -38,7 +38,7 @@ export default function Home({ initialNotes, initialTotalPages }: HomeProps) {
   const [notes, setNotes] = useState<PostProps[]>(initialNotes);
   const [activePage, setActivePage] = useState(1);
   const [totalPages, setTotalPages] = useState(initialTotalPages);
-  const [newNote, setNewNote] = useState({ id: '', title: '', content: '', author:'' });
+  const [newNote, setNewNote] = useState({ id: '', title: '', content: ''});
   const [showNewNoteForm, setShowNewNoteForm] = useState(false);
   const [darkTheme, setDarkTheme] = useState(false);
   
@@ -55,7 +55,7 @@ export default function Home({ initialNotes, initialTotalPages }: HomeProps) {
   });
 
   const [token, setToken] = useState('');
-  const [username, setUsername] = useState('');
+  const [user, setUserName] = useState('');
   const [showCreateUserForm, setShowCreateUserForm] = useState(false);
   const [showLoginForm, setShowLoginForm] = useState(false);
 
@@ -70,7 +70,6 @@ export default function Home({ initialNotes, initialTotalPages }: HomeProps) {
         });
         setNotes(response.data);
         const totalCount = parseInt(response.headers['x-total-count']);
-        console.log("Total Count from API:", totalCount); // Debugging log
         const totalPagesCount = Math.ceil(totalCount / POSTS_PER_PAGE);
         setTotalPages(totalPagesCount);
       } catch (error) {
@@ -137,7 +136,7 @@ const handleAddNewNote = async () => {
 
     setNotes([...notes, response.data]);
     setShowNewNoteForm(false);
-    setNewNote({ id: '', title: '', content: '', author: username });
+    setNewNote({ id: '', title: '', content: '' });
   } catch (error) {
     console.error('Encountered an error while adding a new note:', error);
   }
@@ -217,7 +216,7 @@ const handleLoginSubmit = async (e: React.FormEvent) => {
       password: loginForm.login_form_password,
     });
     setToken(response.data.token);
-    setUsername(loginForm.login_form_username);
+    setUserName(response.data.name);
     console.log('Logged in successfully');
     setShowLoginForm(false);
     setLoginForm({
@@ -235,13 +234,14 @@ const handleLoginSubmit = async (e: React.FormEvent) => {
 
 const handleLogout = () => {
   setToken('');
+  setUserName('');
   console.log('Logged out successfully');
 };
 
 return (
   <>
     {notes.map(note => (
-      <Post key= {`${note.id}`} post={{ ...note, currentUsername: username, onDelete: handleDelete, onUpdateContent: handleUpdateContent, token }} />
+      <Post key= {`${note.id}`} post={{ ...note, currentUserName: user, onDelete: handleDelete, onUpdateContent: handleUpdateContent, token }} />
     ))}
     <div className="pagination">
     <Pagination

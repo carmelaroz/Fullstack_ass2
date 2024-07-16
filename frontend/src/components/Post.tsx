@@ -12,6 +12,7 @@ export type PostProps = {
     onDelete: (id: number) => void;
     onUpdateContent: (id: number, newContent: string) => void;
     token: string;
+    currentUsername: string;
   };
   
 
@@ -73,6 +74,7 @@ export type PostProps = {
         <p>{post.content}</p>
       )}
       <div>
+        {post.currentUsername === post.author?.name && ( <>
         {editMode ? (
           <>
             <button name={`text_input_save-${post.id}`} className="save-button" onClick={handleUpdate}>Save</button>
@@ -82,6 +84,8 @@ export type PostProps = {
           <button name={`edit-${post.id}`} className="edit-button" onClick={handleEditToggle}>Edit</button>
         )}
         <button name={`delete-${post.id}`} className="delete-button" onClick={handleDelete}>Delete</button>
+      </>
+      )}
       </div>
     </div>
   );

@@ -24,14 +24,12 @@ export async function getStaticProps() {
 
   const initialNotes = response.data;
   const totalCount = parseInt(response.headers['x-total-count']);
-  console.log("Total Count from getStaticProps:", totalCount); // Debugging log
   const initialTotalPages = Math.ceil(totalCount / POSTS_PER_PAGE);
-  console.log("Initial Total Pages calculated in getStaticProps:", initialTotalPages); // Debugging log
 
   return {
     props: {
       initialNotes,
-      initialTotalPages, // Ensure this is the correct name
+      initialTotalPages,
     },
   };
 }
@@ -40,7 +38,7 @@ export default function Home({ initialNotes, initialTotalPages }: HomeProps) {
   const [notes, setNotes] = useState<PostProps[]>(initialNotes);
   const [activePage, setActivePage] = useState(1);
   const [totalPages, setTotalPages] = useState(initialTotalPages);
-  const [newNote, setNewNote] = useState({ id: '', title: '', content: '' });
+  const [newNote, setNewNote] = useState({ id: '', title: '', content: '', author:'' });
   const [showNewNoteForm, setShowNewNoteForm] = useState(false);
   const [darkTheme, setDarkTheme] = useState(false);
   
@@ -57,6 +55,7 @@ export default function Home({ initialNotes, initialTotalPages }: HomeProps) {
   });
 
   const [token, setToken] = useState('');
+  const [username, setUsername] = useState('');
   const [showCreateUserForm, setShowCreateUserForm] = useState(false);
   const [showLoginForm, setShowLoginForm] = useState(false);
 
@@ -138,7 +137,7 @@ const handleAddNewNote = async () => {
 
     setNotes([...notes, response.data]);
     setShowNewNoteForm(false);
-    setNewNote({ id: '', title: '', content: '' });
+    setNewNote({ id: '', title: '', content: '', author: username });
   } catch (error) {
     console.error('Encountered an error while adding a new note:', error);
   }
@@ -218,6 +217,7 @@ const handleLoginSubmit = async (e: React.FormEvent) => {
       password: loginForm.login_form_password,
     });
     setToken(response.data.token);
+    setUsername(loginForm.login_form_username);
     console.log('Logged in successfully');
     setShowLoginForm(false);
     setLoginForm({
@@ -241,7 +241,7 @@ const handleLogout = () => {
 return (
   <>
     {notes.map(note => (
-      <Post key= {`${note.id}`} post={{ ...note, onDelete: handleDelete, onUpdateContent: handleUpdateContent, token }} />
+      <Post key= {`${note.id}`} post={{ ...note, currentUsername: username, onDelete: handleDelete, onUpdateContent: handleUpdateContent, token }} />
     ))}
     <div className="pagination">
     <Pagination
@@ -252,6 +252,7 @@ return (
         }}
       />
     </div>
+    {token && (
     <div  className="add-new-note">
         {showNewNoteForm ? (
           <div className="new-note-form" >
@@ -285,12 +286,12 @@ return (
           <button className="button add-new-note-button" name="add-new-note" onClick={() => setShowNewNoteForm(true)}>Add new note</button>
         )}
       </div>
+    )}
       <div>
       <button className="theme-button" onClick={handleChangeTheme} name="change_theme">
       Change Theme
       </button>
     </div>
-
     <div>
       <button className="create-user-button" onClick={() => setShowCreateUserForm(!showCreateUserForm)}>
         {showCreateUserForm ? 'Close Create User Form' : 'Create User'}

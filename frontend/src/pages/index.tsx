@@ -9,39 +9,34 @@ import '../css/style.css';
 const POSTS_PER_PAGE : number = 10;
 const NOTES_URL : string = "//localhost:3001/api/notes";
 
-export async function getStaticProps() {
-  try {
-    const response = await axios.get(NOTES_URL, {
-      params: {
-        _page: 1,
-        _per_page: POSTS_PER_PAGE,
-      },
-    });
-
-    const initialNotes = response.data;
-    const totalCount = parseInt(response.headers['x-total-count']);
-    const initialTotalPages = Math.ceil(totalCount / POSTS_PER_PAGE);
-
-    return {
-      props: {
-        initialNotes,
-        initialTotalPages,
-      },
-    };
-  } catch (error) {
-    console.error("Failed to fetch notes:", error);
-
-    return {
-      props: {
-        initialNotes: [],
-        initialTotalPages: 1,
-      },
-    };
-  }
+interface HomeProps {
+  initialNotes: PostProps[];
+  initialTotalPages: number;
 }
 
+export async function getStaticProps() {
+  const response = await axios.get(NOTES_URL, {
+    params: {
+      _page: 1,
+      _per_page: POSTS_PER_PAGE,
+    },
+  });
 
-export default function Home({ initialNotes, initialTotalPages }) {
+  const initialNotes = response.data;
+  const totalCount = parseInt(response.headers['x-total-count']);
+  console.log("Total Count from getStaticProps:", totalCount); // Debugging log
+  const initialTotalPages = Math.ceil(totalCount / POSTS_PER_PAGE);
+  console.log("Initial Total Pages calculated in getStaticProps:", initialTotalPages); // Debugging log
+
+  return {
+    props: {
+      initialNotes,
+      initialTotalPages, // Ensure this is the correct name
+    },
+  };
+}
+
+export default function Home({ initialNotes, initialTotalPages }: HomeProps) {
   const [notes, setNotes] = useState<PostProps[]>(initialNotes);
   const [activePage, setActivePage] = useState(1);
   const [totalPages, setTotalPages] = useState(initialTotalPages);
@@ -65,19 +60,27 @@ export default function Home({ initialNotes, initialTotalPages }) {
   const [showCreateUserForm, setShowCreateUserForm] = useState(false);
   const [showLoginForm, setShowLoginForm] = useState(false);
 
-//   useEffect(() => {
-//     const promise = axios.get(NOTES_URL, {
-//         params: {
-//           _page: activePage,
-//           _per_page: POSTS_PER_PAGE
-//         }});
-//     promise.then(response => { 
-//       setNotes(response.data);
-//       const totalCount = parseInt(response.headers['x-total-count']);
-//       const totalPagesCount = Math.ceil(totalCount / POSTS_PER_PAGE);
-//       setTotalPages(totalPagesCount)
-//     }).catch(error => { console.log("Encountered an error:" + error); });
-// }, [activePage]);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(NOTES_URL, {
+          params: {
+            _page: activePage,
+            _per_page: POSTS_PER_PAGE,
+          },
+        });
+        setNotes(response.data);
+        const totalCount = parseInt(response.headers['x-total-count']);
+        console.log("Total Count from API:", totalCount); // Debugging log
+        const totalPagesCount = Math.ceil(totalCount / POSTS_PER_PAGE);
+        setTotalPages(totalPagesCount);
+      } catch (error) {
+        console.log("Encountered an error:" + error);
+      }
+    };
+
+    fetchData();
+  }, [activePage]);
 
 const handlePageChange = (page: number) => {
     setActivePage(page);

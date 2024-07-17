@@ -1,7 +1,6 @@
 require('dotenv').config()
 const express = require('express')
 const app = express()
-const morgan = require('morgan')
 const fs = require('fs')
 const path = require('path')
 const noteRouter = require('./routers/noteRouter')

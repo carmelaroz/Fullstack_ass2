@@ -23,15 +23,14 @@ const getAllNotes = (request, response, next) => {
 };
   
 const getTheIthNote = (request, response, next) => {
-    const index = parseInt(request.params.id) - 1
+    const index = request.params.id
     if (isNaN(index) || index < 0) {
       return response.status(400).json({ error: 'invalid index' })
     }
-    Note.find({})
-      .skip(index) 
-      .then(notes => {
-        if (notes.length > 0) {
-          response.status(200).json(notes[0]) 
+    Note.findOne({id: index})
+      .then(note => {
+        if (note) {
+          response.status(200).json(note) 
         } else {
           response.status(404).end()
         }
@@ -151,7 +150,7 @@ const updateNote = async(request, response, next) => {
       note.content = updatedContent;
       note.save()
         .then(updatedNote => {
-          response.status(201).json(updatedNote);
+          response.status(200).json(updatedNote);
         }).catch(error => next(error));
     }).catch(error => next(error))
   }

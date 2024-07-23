@@ -1,6 +1,6 @@
 "use client";
 import React from 'react';
-import { useState , useEffect} from 'react';
+import { useState , useEffect, useRef} from 'react';
 import axios from 'axios';
 import Post, {PostProps} from '../components/Post';
 import Pagination from '../components/Pagination';
@@ -59,25 +59,78 @@ export default function Home({ initialNotes, initialTotalPages }: HomeProps) {
   const [showCreateUserForm, setShowCreateUserForm] = useState(false);
   const [showLoginForm, setShowLoginForm] = useState(false);
 
-  useEffect(() => {
-    const fetchData = async () => {
+  const cache = useRef<Map<number, PostProps[]>>(new Map());
+
+  const fetchAndCachePage = async (p: number, newCache: Map<number, PostProps[]>, page: number) => {
+    if (cache.current.has(p)) {
+      newCache.set(p, cache.current.get(p)!);
+      console.log(`Page ${p} loaded from cache`);
+    } else {
       try {
         const response = await axios.get(NOTES_URL, {
-          params: {
-            _page: activePage,
-            _per_page: POSTS_PER_PAGE,
-          },
+          params: { _page: p, _per_page: POSTS_PER_PAGE },
         });
-        setNotes(response.data);
-        const totalCount = parseInt(response.headers['x-total-count']);
-        const totalPagesCount = Math.ceil(totalCount / POSTS_PER_PAGE);
-        setTotalPages(totalPagesCount);
+        const fetchedPosts = response.data;
+        newCache.set(p, fetchedPosts);
+        if (p === page) {
+          setNotes(fetchedPosts);
+        }
+        console.log(`Page ${p} fetched from server`);
       } catch (error) {
-        console.log("Encountered an error:" + error);
+        console.error(`Encountered an error while fetching page ${p}:`, error);
       }
-    };
+    }
+  };
 
-    fetchData();
+  const clearCache = (page: number) => {
+    let startPage = Math.max(page - 2, 1);
+    let endPage = Math.min(page + 2, totalPages);
+    if(activePage > totalPages -2) { 
+      startPage = page - 4;
+      endPage = totalPages;
+    }
+    if(activePage == 1 || activePage == 2) {
+      startPage = 1;
+      endPage = 5;
+    }
+
+    cache.current.forEach((_, key) => {
+      if (key < startPage || key > endPage) {
+        cache.current.delete(key);
+      }
+    });
+  };
+
+
+  const fetchPosts = async (page: number) => {
+    clearCache(page);
+    const newCache = new Map<number, PostProps[]>();
+
+    if(totalPages <= 5) {
+      for (let p = 1; p <= totalPages; p++) {
+        await fetchAndCachePage(p, newCache, page);
+      }
+    }
+    else {
+      if(activePage > totalPages -2) {
+        for (let p = totalPages - 4; p <= totalPages; p++) {
+          await fetchAndCachePage(p, newCache, page);
+        }
+      } else {
+        for (let p = Math.max(activePage - 2, 1); p <= Math.max(activePage + 2, 5); p++) {
+          await fetchAndCachePage(p, newCache, page);
+        }
+      }
+    }
+    newCache.forEach((value, key) => cache.current.set(key, value));
+    if (cache.current.has(page)) {
+      setNotes(cache.current.get(page)!);
+    }
+  };
+
+  useEffect(() => {
+    console.log(`Calling fetchPosts for activePage: ${activePage}`);
+    fetchPosts(activePage);
   }, [activePage]);
 
 const handlePageChange = (page: number) => {
@@ -293,10 +346,6 @@ return (
       </button>
     </div>
     <div>
-      <button className="create-user-button" onClick={() => setShowCreateUserForm(!showCreateUserForm)}>
-        {showCreateUserForm ? 'Close Create User Form' : 'Create User'}
-      </button>
-      {showCreateUserForm && (
         <form className="user-form" name="create_user_form" onSubmit={handleCreateUserSubmit}>
           <div>
             <label>
@@ -348,12 +397,8 @@ return (
           </div>
           <button className="submit-button" type="submit" name="create_user_form_create_user">register</button>
         </form>
-      )}
 
-      <button  className="login-button" onClick={() => setShowLoginForm(!showLoginForm)}>
-        {showLoginForm ? 'Close Login Form' : 'Login'}
-      </button>
-      {showLoginForm && (
+      {!token && (
         <form className="user-form" name="login_form" onSubmit={handleLoginSubmit}>
           <div>
             <label>
@@ -379,7 +424,7 @@ return (
               />
             </label>
           </div>
-          <button className="submit-button" type="submit" >Log in</button>
+          <button name= "login_form_login" className="submit-button" type="submit" >Login</button>
         </form>
       )}
 

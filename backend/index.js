@@ -32,8 +32,8 @@ mongoose.connect(url)
 
 require('./models/note')
 require('./models/user')
-app.use('/api/notes', noteRouter)
-app.use('/api/users', userRouter)
+app.use('/notes', noteRouter)
+app.use('/', userRouter)
 
 const PORT = process.env.PORT || 3001
 app.listen(PORT, () => {

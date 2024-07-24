@@ -2630,3 +2630,20 @@
 23/07/2024, 16:31:46 GET /api/notes {}
 23/07/2024, 16:31:46 GET /api/notes {}
 23/07/2024, 16:31:46 GET /api/notes {}
+24/07/2024, 17:31:11 GET /api/notes/8 {"content":"abc"}
+24/07/2024, 17:31:33 GET /api/notes/8 {"content":"abc"}
+24/07/2024, 17:31:41 GET /notes/8 {"content":"abc"}
+24/07/2024, 17:32:32 GET /users/ {"content":"abc"}
+24/07/2024, 17:37:57 POST /users/ {"name":"user7","email":"mail_7@gmail.com","username":"username 7","password":"password7"}
+24/07/2024, 17:38:30 POST /users {"name":"user7","email":"mail_7@gmail.com","username":"username 7","password":"password7"}
+24/07/2024, 17:38:52 POST /users {"name":"user7","email":"mail_7@gmail.com","username":"username 7","password":"password7"}
+24/07/2024, 17:38:57 POST /users/users {"name":"user7","email":"mail_7@gmail.com","username":"username 7","password":"password7"}
+24/07/2024, 17:55:39 GET /users {"name":"user7","email":"mail_7@gmail.com","username":"username 7","password":"password7"}
+24/07/2024, 17:55:57 POST /users {"name":"user8","email":"mail_8@gmail.com","username":"username 8","password":"password8"}
+24/07/2024, 17:56:32 GET /users {"name":"user8","email":"mail_8@gmail.com","username":"username 8","password":"password8"}
+24/07/2024, 17:56:35 POST /users {"name":"user8","email":"mail_8@gmail.com","username":"username 8","password":"password8"}
+24/07/2024, 17:57:12 POST /login {"username":"username 8","password":"password8"}
+24/07/2024, 18:19:25 GET /users {"username":"username 8","password":"password8"}
+24/07/2024, 18:19:34 GET /login {"username":"username 8","password":"password8"}
+24/07/2024, 18:19:40 POST /login {"username":"username 8","password":"password8"}
+24/07/2024, 18:20:11 POST /users {"name":"user9","email":"mail_9@gmail.com","username":"username 9","password":"password9"}

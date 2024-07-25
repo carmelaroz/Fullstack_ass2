@@ -7,7 +7,7 @@ import Pagination from '../components/Pagination';
 import './style.css';
 
 const POSTS_PER_PAGE : number = 10;
-const NOTES_URL : string = "//localhost:3001/api/notes";
+const NOTES_URL : string = "//localhost:3001/notes";
 
 export default function Home() {
   const [notes, setNotes] = useState<PostProps[]>([]);

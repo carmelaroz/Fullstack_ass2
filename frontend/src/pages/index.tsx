@@ -7,7 +7,7 @@ import Pagination from '../components/Pagination';
 import '../css/style.css';
 
 const POSTS_PER_PAGE : number = 10;
-const NOTES_URL : string = "//localhost:3001/api/notes";
+const NOTES_URL : string = "//localhost:3001/notes";
 
 interface HomeProps {
   initialNotes: PostProps[];
@@ -236,7 +236,7 @@ const handleCreateUserChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 const handleCreateUserSubmit = async (e: React.FormEvent) => {
   e.preventDefault();
   try {
-    const response = await axios.post('http://localhost:3001/api/users/users', {
+    const response = await axios.post('http://localhost:3001/users', {
       name: createUserForm.create_user_form_name,
       email: createUserForm.create_user_form_email,
       username: createUserForm.create_user_form_username,
@@ -264,7 +264,7 @@ const handleLoginChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 const handleLoginSubmit = async (e: React.FormEvent) => {
   e.preventDefault();
   try {
-    const response = await axios.post('http://localhost:3001/api/users/login', {
+    const response = await axios.post('http://localhost:3001/login', {
       username: loginForm.login_form_username,
       password: loginForm.login_form_password,
     });

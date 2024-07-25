@@ -15,7 +15,7 @@ app.use(cors())
 app.use(express.json())
 app.use(logger)
 require('./models/note')
-app.use('/api/notes', noteRouter)
+app.use('/notes', noteRouter)
 
 const PORT = process.env.PORT || 3001
 app.listen(PORT, () => {

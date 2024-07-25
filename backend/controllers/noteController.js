@@ -51,7 +51,7 @@ const createNote = (request, response, next) => {
         content: body.content,
     })
     note.save().then(savedNote => {
-      response.status(201).json(savedNote)
+      response.status(200).json(savedNote)
     }).catch(error => next(error))
   }
 
@@ -100,7 +100,7 @@ const updateNote = (request, response, next) => {
       note.content = updatedContent;
       note.save()
         .then(updatedNote => {
-          response.status(201).json(updatedNote);
+          response.status(200).json(updatedNote);
         }).catch(error => next(error));
     }).catch(error => next(error))
   }

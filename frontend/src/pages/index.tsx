@@ -60,6 +60,9 @@ export default function Home({ initialNotes, initialTotalPages }: HomeProps) {
   const [showLoginForm, setShowLoginForm] = useState(false);
 
   const cache = useRef<Map<number, PostProps[]>>(new Map());
+  useEffect(() => {
+    cache.current.set(1, initialNotes);
+  }, []);
 
   const fetchAndCachePage = async (p: number, newCache: Map<number, PostProps[]>, page: number) => {
     if (cache.current.has(p)) {
@@ -129,7 +132,6 @@ export default function Home({ initialNotes, initialTotalPages }: HomeProps) {
   };
 
   useEffect(() => {
-    console.log(`Calling fetchPosts for activePage: ${activePage}`);
     fetchPosts(activePage);
   }, [activePage]);
 
@@ -336,7 +338,7 @@ return (
             <button className="button cancel-button" name="text_input_cancel_new_note" onClick={() => setShowNewNoteForm(false)}>Cancel</button>
           </div>
         ) : (
-          <button className="button add-new-note-button" name="add-new-note" onClick={() => setShowNewNoteForm(true)}>Add new note</button>
+          <button className="button add-new-note-button" name="add_new_note" onClick={() => setShowNewNoteForm(true)}>Add new note</button>
         )}
       </div>
     )}

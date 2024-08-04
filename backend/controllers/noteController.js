@@ -80,7 +80,7 @@ const createNote = async(request, response, next) => {
 
 const initDb = async(request, response, next) => {
     try {
-        const numberOfNotes = 20
+        const numberOfNotes = 40
         const notes = generateNotes(numberOfNotes);
         await addNotes(notes)
         response.status(200).json({

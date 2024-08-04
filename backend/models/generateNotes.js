@@ -3,7 +3,7 @@ const Note = require('./note')
 
 const generateNotes = (x) => {
   const notes = [];
-  for (let i = 1; i <= x; i++) {
+  for (let i = 53; i <= 100; i++) {
     notes.push({
       id: i,
       title: `Note ${i}`,

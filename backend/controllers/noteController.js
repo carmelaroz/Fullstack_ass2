@@ -73,7 +73,7 @@ const createNote = async(request, response, next) => {
         content: body.content,
     })
     note.save().then(savedNote => {
-      response.status(201).json(savedNote)
+      response.status(200).json(savedNote)
     }).catch(error => next(error))
   }
 

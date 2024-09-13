@@ -1,38 +1,39 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Notes Management Application
+### About:
+This project involved building a dynamic web application using Next.js for the front-end and MongoDB for the back-end. We implemented user authentication, ensuring that only registered users could create, edit, or delete notes, while guests could view them. We utilized Static Site Generation (SSG) with Next.js allowed for pre-rendering HTML at build time, ensuring fast load times. Playwright was used for end-to-end testing, Additionally, handling HTTP requests efficiently facilitated communication between the front-end and back-end.
 
-## Getting Started
+### Setup the project
+1. `git clone https://github.com/carmelaroz/frontend_hw1.git`
 
-First, run the development server:
+2. `cd https://github.com/carmelaroz/frontend_hw1.git`
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+3. `cd frontend`
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+4. `npm install`
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+5. `cd ../backend`
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+6. `npm install`
 
-## Learn More
+7. copy a `.env` file into the backend dir and `frontend` dir.
 
-To learn more about Next.js, take a look at the following resources:
+### Configure the Backend
+`cd backend`
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+`node index.js`
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+### Configure the Frontend
+`cd frontend`
 
-## Deploy on Vercel
+`npm run dev`
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Test the Application
+* open http://localhost:3000
+* view all notes 
+* create new user via the registration form
+* log in user via the login form
+* logout
+* add new note (only when user is logged in)
+* edit/delete note (only if user is logged in and the note is created by him)
+* change the theme
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
-# Fullstack_ass2
-# Fullstack_ass2

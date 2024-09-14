@@ -3,9 +3,9 @@
 This project involved building a dynamic web application using Next.js for the front-end and MongoDB for the back-end. We implemented user authentication, ensuring that only registered users could create, edit, or delete notes, while guests could view them. We utilized Static Site Generation (SSG) with Next.js allowed for pre-rendering HTML at build time, ensuring fast load times. Playwright was used for end-to-end testing, Additionally, handling HTTP requests efficiently facilitated communication between the front-end and back-end.
 
 ### Setup the project
-1. `git clone https://github.com/carmelaroz/frontend_hw1.git`
+1. `git clone https://github.com/carmelaroz/notes-management-application.git`
 
-2. `cd https://github.com/carmelaroz/frontend_hw1.git`
+2. `cd https://github.com/carmelaroz/notes-management-application.git`
 
 3. `cd frontend`
 

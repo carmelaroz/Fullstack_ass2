@@ -1,0 +1,5 @@
+.next/* linguist-vendored
+public/* linguist-vendored
+out/* linguist-vendored
+dist/* linguist-vendored
+*.html linguist-vendored
